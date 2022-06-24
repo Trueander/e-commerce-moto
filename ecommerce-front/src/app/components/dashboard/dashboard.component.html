@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg text-white" style="background-color: #232323">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+        <li class="nav-item">
+          <a class="navbar-brand text-white fw-bold">MotoZ</a>
+        </li>
+      </ul>
+      <div class="d-flex" role="search">
+        <li class="nav-item d-flex justify-content-center align-items-center me-4">
+          <a class="nav-link fw-bold text-white" [routerLink]="['/productos']" style="cursor: pointer">Index</a>
+        </li>
+        <li class="nav-item d-flex justify-content-center align-items-center me-4">
+          <a class="nav-link fw-bold text-white" [routerLink]="['/dashboard']" style="cursor: pointer">Productos</a>
+        </li>
+        <li class="nav-item d-flex justify-content-center align-items-center me-4">
+          <a class="nav-link fw-bold text-white" [routerLink]="['/dashboard/productos/crear']"  style="cursor: pointer">Crear Producto</a>
+        </li>
+        <li class="nav-item d-flex justify-content-center align-items-center me-4">
+          <a class="nav-link fw-bold text-white" [routerLink]="['/dashboard/ventas']" style="cursor: pointer">Reporte de ventas</a>
+        </li>
+        <button class="btn bg-primary bg-opacity-50 text-white" type="submit" (click)="cerrarSesion()">Salir</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <h2 class="text-white text-center">Productos</h2>
+  <table class="table table-hover mb-5" >
+    <thead class="bg-primary bg-opacity-25 text-white">
+      <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody class=" bg-white">
+      <tr *ngFor="let producto of productos">
+        <td class="fw-bold">{{producto.nombreProducto}}</td>
+        <td>{{producto.precio | currency: "$"}}</td>
+        <td >{{producto.descripcion}}</td>
+        <td>
+          <button class="btn btn-outline-warning mb-1 d-grid w-100" [routerLink]="['productos/actualizar',producto.idProducto]">Editar</button>
+          <button class="btn btn-outline-danger d-grid w-100" (click)="eliminarProducto(producto)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
